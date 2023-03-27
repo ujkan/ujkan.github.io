@@ -7,9 +7,10 @@ redirect_from:
   - /about/
   - /about.html
 ---
+Hi!
 
-This is Ujkan Sulejmani's home on the web!
+I'm currently in the role of Consultant for CGI, primarily working as a Java Backend Developer.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A arcu cursus vitae congue mauris. Vitae justo eget magna fermentum iaculis eu non. Maecenas sed enim ut sem viverra aliquet eget sit amet. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Consequat ac felis donec et odio pellentesque. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum. Morbi enim nunc faucibus a pellentesque sit amet porttitor. Vitae aliquet nec ullamcorper sit amet risus. Vestibulum sed arcu non odio euismod lacinia. Urna porttitor rhoncus dolor purus non enim praesent elementum. Mi in nulla posuere sollicitudin aliquam ultrices sagittis. Neque vitae tempus quam pellentesque nec. Cum sociis natoque penatibus et magnis dis parturient montes nascetur.
+I finished my Bachelor's degree in Computer Science at TU Munich in November 2022. During that time, I acquired skills in imperative (Java, C, Python) and functional (Haskell, OCaml) programming languages. Additionally, I have experience in formal verification with Isabelle/HOL. For example, I formally verified a 2-approximation algorithm and the Hales-Jewett Theorem.
 
-Sit amet mattis vulputate enim nulla. Magna etiam tempor orci eu lobortis elementum nibh tellus molestie. Quam adipiscing vitae proin sagittis nisl rhoncus. Arcu odio ut sem nulla pharetra diam sit amet. Egestas integer eget aliquet nibh praesent tristique magna. Eget felis eget nunc lobortis mattis aliquam faucibus. Id porta nibh venenatis cras. Amet consectetur adipiscing elit pellentesque habitant. Tellus id interdum velit laoreet id. Vivamus arcu felis bibendum ut tristique et egestas quis ipsum. Pellentesque sit amet porttitor eget dolor.
+Outside of work, I spend my time learning new things (currently ML through CS229 @ Stanford), playing sports, and cooking.
