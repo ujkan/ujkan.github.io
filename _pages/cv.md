@@ -20,9 +20,9 @@ Work experience
   * Duties included: Conducting recitations for "Introduction to Theoretical CS" and "Functional Programming and Verification", correcting homework and marking exams
   * Supervisors: Michael Schwarz and Martin Helfrich
 
-Skills
-======
-* Skill 1
+<!-- Skills -->
+<!-- ====== -->
+<!-- * Skill 1 -->
 
 Publications
 ======
