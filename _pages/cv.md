@@ -17,7 +17,7 @@ Work experience
 ======
 * Summer 2022: Teaching Assistant
   * Technical University of Munich
-  * Duties included: Conducting recitations for "Introduction to Theoretical CS" and "Functional Programming and Verification", correcting homework and marking exams
+  * Conducted recitations for "Introduction to Theoretical CS" and "Functional Programming and Verification", corrected homework and marked exams.
   * Supervisors: Michael Schwarz and Martin Helfrich
 
 <!-- Skills -->
