@@ -7,5 +7,5 @@ date: 2022-03-01
 venue: 'Logical Methods in Computer Science'
 paperurl: 'https://lmcs.episciences.org/9148'
 ---
-Here's a [link](https://lmcs.episciences.org/9148)'
+Here's a [link](https://lmcs.episciences.org/9148)
 
