@@ -224,6 +224,10 @@ li.email b {
     white-space: nowrap;
   }
 
+  li.email b {
+    display: none
+  }
+
   a {
     display: block;
     margin-bottom: 5px;
