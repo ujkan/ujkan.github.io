@@ -159,7 +159,7 @@
 }
 
 li.email b {
-  display: none
+  display: none !important
 }
 
 .author__urls {
@@ -225,7 +225,7 @@ li.email b {
   }
 
   li.email b {
-    display: none
+    display: none !important
   }
 
   a {
