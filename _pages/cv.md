@@ -11,7 +11,7 @@ redirect_from:
 
 Education
 ======
-* B.S. in Computer Science, Technical University of Munich, 2022
+* B.S. in Computer Science, Technical University of Munich, 2018-2022
 
 Work experience
 ======
