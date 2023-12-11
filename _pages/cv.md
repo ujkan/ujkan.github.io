@@ -15,8 +15,10 @@ Education
 
 Work experience
 ======
-* Summer 2022: Teaching Assistant
-  * Technical University of Munich
+* April 2023 - now: Full Stack Developer @ CGI
+  * Frontend with Angular (and NgRx for state management)
+  * Backend with Spring Boot
+* April 2022 - September 2022: Teaching Assistant @ TU Munich
   * Duties included: Conducting recitations for "Introduction to Theoretical CS" and "Functional Programming and Verification", correcting homework and marking exams
   * Supervisors: Michael Schwarz and Martin Helfrich
 
