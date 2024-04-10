@@ -7,7 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-Hi there, I'm Ujkan! I'm a software dev.[^1]
+Hi there, I'm Ujkan! I'm a software dev.
 
 I am a full stack + operations dev working at [CGI](https://www.cgi.com/de/de)'s Munich
  office. In my current project, I work on an SPA with Angular and Spring. 
@@ -25,5 +25,3 @@ I'm currently interested in (at varying levels):
 *A Pattern Language*) as a tool for thought
 - software engineering principles that go beyond the 
 dogmatic popular philosophies (such as *Clean Code*)
-
-[^1]: footnote test
