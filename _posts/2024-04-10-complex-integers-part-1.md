@@ -65,7 +65,7 @@ Before we answer that, we need to set some other things in order. We have to est
 
 One very natural way to talk about the size of a Complex integer is to look at the 2D representation of these numbers. A number like $3+4i$ is represented by a vector starting at the origin and ending at the point $(3,4)$. (See the figure below.) The length of this vector is $\sqrt{3^2+4^2}=\sqrt{25}=5$. Not coincidentally, this is the notion of size in the Complex numbers $\mathbb{C}$, so it makes sense to use this for $\mathbb{K}$ as well. Namely, we can define the size of $a+bi$ to be $\sqrt{a^2+b^2}$.
 
-![](file:///Users/ujkan/Desktop/screenshots/Screenshot%202024-02-18%20at%2020.47.05.png?msec=1711799609405)
+![](/images/complex-integers-1/Screenshot%202024-02-18%20at%2020.47.05.png)
 
 However, to avoid the hassle of dealing with square roots, we actually define the size (or *norm*) as:
 
@@ -133,7 +133,7 @@ where $N(-1-i) = 1^2 + 1^2 = 2 < 16 = 4^2 = N(4)$, which indeed is correct.
 
 We now argue that this approach always works. Observe that, of the two possible *valid* (i.e. small enough) remainders (one positive and one negative), at least one of them is **in absolute value** smaller than or equal to half of the divisor. Visually, this is immediately obvious, as seen below, where both $r_+$ and $r_-$ are within a window of $d$ (between $4d$ and $5d$), but $r_+$ is smaller than half of the window.
 
-![](file:///Users/ujkan/Library/Application%20Support/marktext/images/2024-03-22-00-27-39-image.png?msec=1711799609387)
+![](/images/complex-integers-1/2024-03-22-00-27-39-image.png?msec=1711799609387)
 
 And algebraically? Well, think about the relation between divisor and the two remainders $r_+$ and $r_-$. The negative remainder $r_-$ is obtained by exactly increasing the quotient which produces $r_+$ by $1$, which means taking one more step of length $d$. This extra step eats into the existing remainder $r_+$, leaving now a new remainder $r_{-}$ which is equal to $r_+ - d$. Therefore
 
