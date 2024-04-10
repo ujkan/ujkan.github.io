@@ -119,7 +119,7 @@ $$
 
 since $-33 < 4$. But what does the minus sign mean in the context of division anyway? I mean, look at $-7 \div (-3)$. If we ignore the signs and go for the same quotient as in $7\div3$, we obtain $-7\div(-3)=2r[-1]$, a negative remainder. If we insist on a positive remainder, we get $-7\div(-3)=3r[2]$, but $2 > -3$. So we're in a bit of a pickle.
 
-It is evident that our initial notion of size in the integers doesn't work that well. What if we borrow the one from $\mathbb{K}$? Namely, what if we treat integers as distances from $0$. This is of course the familiar concept of *absolute value*. Luckily, this cures our headache quite neatly: both $2r[-1]$ and $3r[2]$ are valid results, since $|-1| < |-3|$ and $|2|<|-3|$. This also implies that we're perfectly justified in writing $7\div4=2r[-1]$, since $|-1| < 4$.
+It is evident that our initial notion of size in the integers doesn't work that well. What if we borrow the one from $\mathbb{K}$? Namely, what if we treat integers as distances from $0$. This is of course the familiar concept of *absolute value*. Luckily, this cures our headache quite neatly: both $2r[-1]$ and $3r[2]$ are valid results, since $ \vert -1 \vert  <  \vert -3 \vert $ and $ \vert 2 \vert < \vert -3 \vert $. This also implies that we're perfectly justified in writing $7\div4=2r[-1]$, since $ \vert -1 \vert  < 4$.
 
 If this ambiguity bothers you, think about the fractional result of $7 \div 4 = 1.75$. This number can either be rounded up to $2$ (producing remainder $-1$) or rounded down to $1$ (producing remainder $3$). In some sense, both these operations are valid: they result in small enough remainders. They also show that there can only be two possible small enough remainders, so the ambiguity is not uncertain, but predictable.
 
@@ -140,12 +140,12 @@ And algebraically? Well, think about the relation between divisor and the two re
 $$
 r_+ - r_- = d \\
 \text{or} \\
-|r_+| + |r_-| = d
+ \vert r_+ \vert  +  \vert r_- \vert  = d
 $$
 
-where $\vert r_+ \vert < d$ and $\vert r_- \vert < d$. Assume both are larger than $\frac{d}{2}$, i.e. $|r_+| > \frac{d}{2}$ and $|r_-| > \frac{d}{2}$. Summing them up yields $d = \vert r_+ \vert + \vert r_- \vert > d$, which is a contradiction.
+where $\vert r_+ \vert < d$ and $\vert r_- \vert < d$. Assume both are larger than $\frac{d}{2}$, i.e. $ \vert r_+ \vert  > \frac{d}{2}$ and $ \vert r_- \vert  > \frac{d}{2}$. Summing them up yields $d = \vert r_+ \vert + \vert r_- \vert > d$, which is a contradiction.
 
-Hence, to divide $a+bi$ by an integer $d$, divide $a$ and $b$ by $d$ respectively, each time obtaining the smaller remainder, i.e. the one for which $|r|\leq\frac{d}{2}$ holds. Then the following holds:
+Hence, to divide $a+bi$ by an integer $d$, divide $a$ and $b$ by $d$ respectively, each time obtaining the smaller remainder, i.e. the one for which $ \vert r \vert \leq\frac{d}{2}$ holds. Then the following holds:
 
 $$
 N(r) = N(r_a+r_bi) = r_a^2 + r_b^2 \leq \frac{d^2}{4} + \frac{d^2}{4} = \frac{d^2}{2} <d^2=N(d)
@@ -170,8 +170,8 @@ $$
 We are guaranteed, of course, that each component of the remainder $-2+i$ is at most half the divisor $5$, which we can easily check:
 
 $$
-|-2| \leq 2.5 = \frac{1}{2}\times 5 \\
-|1| \leq 2.5 = \frac{1}{2}\times 5
+ \vert -2 \vert  \leq 2.5 = \frac{1}{2}\times 5 \\
+ \vert 1 \vert  \leq 2.5 = \frac{1}{2}\times 5
 $$
 
 This leads us to conclude
@@ -260,7 +260,7 @@ So, in some sense, we need to combine the equivalence $r=(a-bi)R$ and $N(r) <N(z
 Let's try to mathematically capture the notion that multiplying two Complex integers produces a larger Complex integer. As usual, we start with the ordinary integers. What does it mean for the product of two integers to be larger than the two multiplicands? Just how much larger is this product? Well, $6$, the product of $2$ and $3$ is, for example, exactly $3$ times larger than $2$ (and vice versa). In other words, the *size* of $6$ is exactly the product of the sizes of $3$ and $2$. This sounds funny because we're using the integers themselves to talk about the size of integers. Our common intuition is that integers are a measure of size and that multiplication is a measure of "by how much", so the question "by how much is the product larger than the multiplicands" is answered *by definition*! In other words:
 
 $$
-|ab| = |a||b|
+ \vert ab \vert  =  \vert a \vert  \vert b \vert 
 $$
 
 Does this generalize to the Complex integers? Namely, is it also true that
