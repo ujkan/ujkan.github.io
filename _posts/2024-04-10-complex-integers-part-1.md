@@ -177,8 +177,13 @@ $$
 This leads us to conclude
 
 $$
-N(-2+i) = (-2)^2 + (1)^2 \leq \left(\frac{1}{2}\times5\right)^2 + \left(\frac{1}{2}\times5\right)^2 = 2 \times\frac{1}{4}\times5^2=\frac{1}{2}\times5^2
-=\frac{1}{2}N(5)
+\begin{aligned}
+N(-2+i) &= (-2)^2 + (1)^2 \\
+&\leq \left(\frac{1}{2}\times5\right)^2 + \left(\frac{1}{2}\times5\right)^2 \\
+&= 2 \times\frac{1}{4}\times5^2 \\
+&=\frac{1}{2}\times5^2 \\
+&=\frac{1}{2}N(5)
+\end{aligned}
 $$
 
 which is the same statement as above but for $\mathbb{K}$ instead of $\mathbb{Z}$.
