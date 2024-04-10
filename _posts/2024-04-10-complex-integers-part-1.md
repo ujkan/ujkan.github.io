@@ -218,9 +218,9 @@ Observe once more the division equation of $(18-9i)\div5$:
 
 $$
 \begin{aligned}
-9\textcolor{red}{(2-i)} &= (2+i)\textcolor{red}{(2-i)}(4-2i) + (-2 + i)\\
-9\textcolor{red}{(2-i)} -(2+i)\textcolor{red}{(2-i)}(4-2i) &= -2+i \\
-\textcolor{red}{(2-i)}(9 - (2+i)(4-2i)) &= -2+i
+9\color{red}{(2-i)} &= (2+i)\color{red}{(2-i)}(4-2i) + (-2 + i)\\
+9\color{red}{(2-i)} -(2+i)\color{red}{(2-i)}(4-2i) &= -2+i \\
+\color{red}{(2-i)}(9 - (2+i)(4-2i)) &= -2+i
 \end{aligned}
 $$
 
@@ -236,9 +236,9 @@ We denote $d = a^2+b^2$ (an integer) and thus divide $ka-(kb)i$ by $d$, which sh
 
 $$
 \begin{aligned}
-k(a-bi) &= \textcolor{red}{d}q + r \\
-&=\textcolor{red}{(a+bi)(a-bi)}q + r\\
-&=\textcolor{red}{z(a-bi)}q+r
+k(a-bi) &= \color{red}{d}q + r \\
+&=\color{red}{(a+bi)(a-bi)}q + r\\
+&=\color{red}{z(a-bi)}q+r
 \end{aligned}
 $$
 
@@ -246,8 +246,8 @@ Pulling $z(a-bi)q$ to the other side results in
 
 $$
 \begin{aligned}
-r &= k\textcolor{red}{(a-bi)} - z\textcolor{red}{(a-bi)}q\\
-&=\textcolor{red}{(a-bi)}(k - zq)
+r &= k\color{red}{(a-bi)} - z\color{red}{(a-bi)}q\\
+&=\color{red}{(a-bi)}(k - zq)
 \end{aligned}
 $$
 
@@ -279,7 +279,7 @@ $$
 =\,&N((a_1+b_1i)(a_2+b_2i))\\
 =\,&N((a_1a_2-b_1b_2) +(a_1b_2 + a_2b_1)i)\\
 =\,&(a_1a_2-b_1b_2)^2 + (a_1b_2+a_2b_1)^2\\
-=\,&a_1^2a_2^2\textcolor{red}{-2a_1a_2b_1b_2} + b_1^2b_2^2 + a_1^2b_2^2 \textcolor{red}{+2a_1a_2b_1b_2} + a_2^2b_1^2\\
+=\,&a_1^2a_2^2\color{red}{-2a_1a_2b_1b_2} + b_1^2b_2^2 + a_1^2b_2^2 \color{red}{+2a_1a_2b_1b_2} + a_2^2b_1^2\\
 =\,&a_1^2a_2^2 + b_1^2b_2^2 + a_1^2b_2^2 + a_2^2b_1^2\\
 =\,&a_1^2(a_2^2+b_2^2)+a_2^2(a_2^2+b_2^2)\\
 =\,&(a_1^2+a_2^2)(a_2^2+b_2^2)\\
