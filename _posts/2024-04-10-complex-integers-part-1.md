@@ -143,7 +143,7 @@ r_+ - r_- = d \\
 |r_+| + |r_-| = d
 $$
 
-where $|r_+| < d$ and $|r_-| < d$. Assume both are larger than $\frac{d}{2}$, i.e. $|r_+| > \frac{d}{2}$ and $|r_-| > \frac{d}{2}$. Summing them up yields $d = |r_+| +|r_-| > d$, which is a contradiction.
+where $\vert r_+ \vert < d$ and $\vert r_- \vert < d$. Assume both are larger than $\frac{d}{2}$, i.e. $|r_+| > \frac{d}{2}$ and $|r_-| > \frac{d}{2}$. Summing them up yields $d = \vert r_+ \vert + \vert r_- \vert > d$, which is a contradiction.
 
 Hence, to divide $a+bi$ by an integer $d$, divide $a$ and $b$ by $d$ respectively, each time obtaining the smaller remainder, i.e. the one for which $|r|\leq\frac{d}{2}$ holds. Then the following holds:
 
@@ -312,6 +312,6 @@ Let's have a look at our path to the summit from above. In our journey to establ
 
 Our next step was to investigate the division of a Complex integer $a+bi$ by an ordinary integer $d$, where we established that constructing the remainder of this division with the remainders of the division of the two components $a$ and $b$ by $d$ didn't *always* work. We had to pluck the smaller of the two possible remainders in any divison of integers in order for our constructed remainder to be small enough.
 
-We then turned our attention to dividing by any Complex integer $a+bi$, which we saw was an operation reducible to division by an ordinary integer through multiplying both numerator and denominator by $a-bi$. Our last challenge was to find a relation between this second remainder and the remainder we were looking for in the divison by $a+bi$ and to prove that this remainder was small enough. In trying to meet this challenge, we needed to establish another crucial fact about the *norm*, which is that it's multiplicative. That is, $N(z_1z_2)=N(z_1)N(z_2)$ which is an analogue of the all-too-familiar equation $|ab|=|a||b|$.
+We then turned our attention to dividing by any Complex integer $a+bi$, which we saw was an operation reducible to division by an ordinary integer through multiplying both numerator and denominator by $a-bi$. Our last challenge was to find a relation between this second remainder and the remainder we were looking for in the divison by $a+bi$ and to prove that this remainder was small enough. In trying to meet this challenge, we needed to establish another crucial fact about the *norm*, which is that it's multiplicative. That is, $N(z_1z_2)=N(z_1)N(z_2)$ which is an analogue of the all-too-familiar equation $ \vert ab \vert = \vert a \vert  \vert b \vert $.
 
 [^1]: This is a case of using what we want to prove to help us prove it, but doing so **indirectly** by using e.g. the assumption that the Complex integers are "integers" to help us create new hypotheses which, once proven to be true, can help us prove the main goal, i.e. that the Complex integers admit the same kind of division as the integers. This indirectness is crucial: using the goal as an assumption in deducing the goal itself is of course paradoxical. Our indirect use has to do with the *meta*, the human process of proving itself. It aids us in narrowing the set of paths we could take and in getting unstuck.
