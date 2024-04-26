@@ -15,18 +15,18 @@ Education
 
 Work experience
 ======
-- *April 2023 - now*: DevOps Engineer @ CGI Munich
+- **April 2023 - now**: DevOps Engineer @ CGI Munich
   - Timeline:
-    - *January 2024:* Became a DevOps Engineer
-    - *August 2023:* Became a Full-Stack Developer
-    - *April 2023:* Started as a Backend Developer
+    - **January 2024:** Became a DevOps Engineer
+    - **August 2023:** Became a Full-Stack Developer
+    - **April 2023:** Started as a Backend Developer
   - Skills:
     - Spring Boot
     - Angular
     - AWS CDK
     - GitHub Actions
     - Scripting (Bash & Python)
-- April 2022 - September 2022: Teaching Assistant @ TU Munich
+- **April 2022 - September 2022**: Teaching Assistant @ TU Munich
   - Classes:
     - "Introduction to Theoretical CS"
     - "Functional Programming and Verification"

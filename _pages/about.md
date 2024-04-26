@@ -25,3 +25,8 @@ I'm currently interested in (at varying levels):
 *A Pattern Language*) as a tool for thought
 - software engineering principles that go beyond the 
 dogmatic popular philosophies (such as *Clean Code*)
+  - see [The Grug Brained Developer](https://grugbrain.dev/),
+[Core Design Principles for Software Developers by Venkat Subramaniam](https://www.youtube.com/watch?v=llGgO74uXMI),
+[A Philosophy of Software Design by John Ousterhout](https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201)
+
+
