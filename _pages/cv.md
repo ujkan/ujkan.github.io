@@ -15,13 +15,22 @@ Education
 
 Work experience
 ======
-* April 2023 - now: DevOps Engineer @ CGI Munich
-  * January 2024 - now: DevOps Engineer
-  * August 2023 - now: Frontend with Angular (and NgRx for state management)
-  * April 2023 - now: Backend with Spring Boot
-* April 2022 - September 2022: Teaching Assistant @ TU Munich
-  * Duties included: Conducting recitations for "Introduction to Theoretical CS" and "Functional Programming and Verification", correcting homework and marking exams
-  * Supervisors: Michael Schwarz and Martin Helfrich
+- *April 2023 - now*: DevOps Engineer @ CGI Munich
+  - Timeline:
+    - *January 2024:* Became a DevOps Engineer
+    - *August 2023:* Became a Full-Stack Developer
+    - *April 2023:* Started as a Backend Developer
+  - Skills:
+    - Spring Boot
+    - Angular
+    - AWS CDK
+    - GitHub Actions
+    - Scripting (Bash & Python)
+- April 2022 - September 2022: Teaching Assistant @ TU Munich
+  - Classes:
+    - "Introduction to Theoretical CS"
+    - "Functional Programming and Verification"
+  - Supervisors: Michael Schwarz and Martin Helfrich
 
 <!-- Skills -->
 <!-- ====== -->
