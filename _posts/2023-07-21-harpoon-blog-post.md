@@ -1,5 +1,6 @@
 ---
 title: 'Modding harpoon.nvim'
+excerpt: Dealing with long file names
 date: 2023-07-21
 permalink: /posts/2023/07/harpoon/firstmod/
 tags:

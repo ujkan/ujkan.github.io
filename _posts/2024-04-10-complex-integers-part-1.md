@@ -1,5 +1,6 @@
 ---
-title: 'Integers - of other kinds'
+title: 'Integers, Of Other Kinds'
+excerpt: A cool new algebra
 date: 2024-04-10
 permalink: /posts/2024/04/complex-integers-1
 tags:
