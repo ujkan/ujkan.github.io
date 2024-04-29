@@ -7,7 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-Hi there, I'm Ujkan! I'm a software dev.
+Hi there, I'm Ujkan! I'm a software developer. I live in Munich.
 
 I am a full stack + operations dev working at [CGI](https://www.cgi.com/de/de)'s Munich
  office. In my current project, I work on an SPA with Angular and Spring. 
