@@ -20,10 +20,10 @@ among them Python, C, and Haskell.
 
 I'm currently interested in (at varying levels):
 - automation with quick&dirty scripts even when it costs more time
-- writing (see [blog](https://ujkan.github.io/year-archive/))
+- [writing](https://ujkan.github.io/year-archive/)
 - information architecture patterns (in the style of Christoph Alexander's 
 *A Pattern Language*) as a tool for thought
-- software engineering principles that go beyond the 
+- software development principles that go beyond the 
 dogmatic popular philosophies (such as *Clean Code*)
   - see [The Grug Brained Developer](https://grugbrain.dev/),
 [Core Design Principles for Software Developers by Venkat Subramaniam](https://www.youtube.com/watch?v=llGgO74uXMI),
