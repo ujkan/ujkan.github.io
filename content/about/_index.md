@@ -28,10 +28,7 @@ In the next five years I want to implement, on a small scale, a little bit of ev
 
 Will I succeed? No. Is it worth trying? Yes.
 
-Besides that, I have experience in a few other programming languages,
-most substantially in Python, Haskell, and C.
-
-I'm currently interested in:
+Right now, I'm actively interested in:
 - automation with quick&dirty scripts (even when it costs more time)
 - [writing](/year-archive/)
 - information architecture patterns (in the style of Christoph Alexander's
