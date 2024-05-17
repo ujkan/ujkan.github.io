@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Ujkan Sulejmani</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Home on Ujkan Sulejmani</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integers, Of Other Kinds</title>
+      <link>http://localhost:1313/posts/complex-integers/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/complex-integers/</guid>
+      <description>&lt;p&gt;On what makes the integers integers. Another (surprising) kind of integer.&#xA;Why technical writing should feel like an adventure. Good writing is not&#xA;planned. Expanding my algebraic intuition. Examples, examples, examples.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tilings I</title>
+      <link>http://localhost:1313/posts/tilings-1/</link>
+      <pubDate>Sun, 10 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tilings-1/</guid>
+      <description>&lt;p&gt;The joy of simple puzzles. Always think of the invariant.&#xA;Curation is doing the Lord&amp;rsquo;s work. How to put a number to a geometric constraint?&#xA;This thing called parity.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Modding harpoon.nvim</title>
+      <link>http://localhost:1313/posts/harpoon-mod/</link>
+      <pubDate>Fri, 21 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/harpoon-mod/</guid>
+      <description>&lt;p&gt;Mod, hack, fix your problems. The beauty of open-source.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
