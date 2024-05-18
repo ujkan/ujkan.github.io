@@ -30,7 +30,7 @@ Will I succeed? No. Is it worth trying? Yes.
 
 Right now, I'm actively interested in:
 - automation with quick&dirty scripts (even when it costs more time)
-- [writing](/year-archive/)
+- [writing](/posts)
 - information architecture patterns (in the style of Christoph Alexander's
 *A Pattern Language*) as tools for organizing and improving thinking and
 cognition
