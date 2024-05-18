@@ -267,9 +267,9 @@ r &= k\color{red}{(a-bi)} - z\color{red}{(a-bi)}q\\
 \end{aligned}
 $$
 
-Therefore $r$ is always divisible by $a-bi$, being in fact equal to $k - zq$. The result of this division the remainder that we're looking for, the remainder of the division of $k$ by $a+bi$. Call this remainder $R :=k-zq$, with $r=(a-bi)R$
+Therefore $r$ is always divisible by $a-bi$, being in fact equal to $k - zq$. The result of this division is the remainder that we've been looking for, the remainder of the division of $k$ by $a+bi$. Call this remainder $R :=k-zq$, with $r=(a-bi)R$
 
-The final question is (naturally): is $R$ a small enough remainder, i.e. does $N(R) < N(z)$ hold? Let's take a step back and look at our initial remainder $r$, which was the result of a division with $d=a^2+b^2\in\mathbb{Z}$. As we've established above, this means that $r$ is smaller (in the *norm*) than $d$, i.e. $N(r) < N(d)$. Expanding $N(d)$ results in $N(d) = N(a^2+b^2)$, but recall that $a^2+b^2 = N(a+bi)$, hence $N(a^2+b^2)=N(N(a+bi))$ and, given that the norm is always an integer, we have $N(N(a+bi))= N(a+bi)=N(z)^2$. In conclusion: $N(r) < N(z)^2$.
+The final question is naturally: is $R$ a small enough remainder, i.e. does $N(R) < N(z)$ hold? Let's take a step back and look at our initial remainder $r$, which was the result of a division with $d=a^2+b^2\in\mathbb{Z}$. As we've established above, this means that $r$ is smaller (in the *norm*) than $d$, i.e. $N(r) < N(d)$. Expanding $N(d)$ results in $N(d) = N(a^2+b^2)$, but recall that $a^2+b^2 = N(a+bi)$, hence $N(a^2+b^2)=N(N(a+bi))$ and, given that the norm is always an integer, we have $N(N(a+bi))= N(a+bi)^2 = N(z)^2$. In conclusion: $N(r) < N(z)^2$.
 
 So, in some sense, we need to combine the equivalence $r=(a-bi)R$ and $N(r) < N(z)^2$ to show $N(R) < N(z)$. Our goal already hints to the fact that $R$ is potentially smaller than $r$. This is, of course, intuitive, since $r$ is the product of $(a-bi)R$ and, generally, multiplying a number by another makes it larger. The exception here are obviously *fractions*, but the whole point of this chain of argumentation is that the Complex integers are just a *kind of integer*, and there are no fractions in the integers.[^1]
 
