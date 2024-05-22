@@ -94,11 +94,12 @@
     display: block;
     word-wrap: break-word;
   }
+
   .container {
     display: flex;
     flex-direction: column;
     width: 70%;
-    min-height: calc(100vh - 64px);
+    min-height: calc(100vh - 32px);
     max-width: 40rem;
     margin: auto;
     background-color: var(--bg-clr);
@@ -211,6 +212,7 @@
       width: 100vw;
       min-height: calc(100vh - 48px);
       border: 0px;
+      overflow-x: scroll;
     }
 
     header {

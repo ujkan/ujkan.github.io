@@ -212,6 +212,7 @@
       width: 100vw;
       min-height: calc(100vh - 48px);
       border: 0px;
+      overflow-x: scroll;
     }
 
     header {
