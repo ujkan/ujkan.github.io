@@ -16,6 +16,13 @@
       <description>&lt;p&gt;On what makes the integers integers. Another (surprising) kind of integer.&#xA;Why technical writing should feel like an adventure. Good writing is not&#xA;planned. Expanding my algebraic intuition. Examples, examples, examples.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>What I Know About Programming in 2024</title>
+      <link>http://localhost:1313/posts/on-programming-2024/</link>
+      <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/on-programming-2024/</guid>
+      <description>Preface This is not an attempt at defining programming. I’m no good at this sort of thing and I don’t want to open myself to being another Euthyphro. I want to shed light on what I understand certain things in and around programming to be. This is not easy. I neither know much nor know what I don’t know.&#xA;Programming Aesthetics Here are two snippets of code:&#xA;map f [] = [] map f (x:xs) = (f x):(map f xs) function map&amp;lt;T,U&amp;gt;(arr: T[], f: ((_: T) =&amp;gt; U)): U[] { let result: U[] = []; for (el of arr) { result.</description>
+    </item>
+    <item>
       <title>Tilings I</title>
       <link>http://localhost:1313/posts/tilings-1/</link>
       <pubDate>Sun, 10 Dec 2023 00:00:00 +0000</pubDate>
