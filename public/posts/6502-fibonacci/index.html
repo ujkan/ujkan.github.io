@@ -4,6 +4,18 @@
   dir="ltr"
 >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta property="og:url" content="http://localhost:1313/posts/6502-fibonacci/">
+  <meta property="og:site_name" content="Ujkan Sulejmani">
+  <meta property="og:title" content="Fibonacci in 6502 Assembly">
+  <meta property="og:description" content=" Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with little. Understand your tools intimately. Assembly? What, like it&#39;s hard?">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-07-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-24T00:00:00+00:00">
+    <meta property="article:tag" content="6502">
+    <meta property="article:tag" content="Assembly">
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="icon" href="/icon.png">
@@ -62,8 +74,12 @@
   
   <time datetime="2024-07-24T00:00:00&#43;00:00">July 24, 2024</time>
 
-  <p>Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with
-little. Understand your tools intimately. Assembly? What, like it&rsquo;s hard?</p>
+  <meta property="og:title" content="{{ if .context.IsHome }}{{ .context.Site.Params.mydomain }}{{ else }}{{ .context.Title }} &middot; {{ .context.Site.Params.mydomain }}{{ end }}">
+<meta property="og:type" content="{{ if .context.IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:description" content="{{ if .context.Description }}{{ .context.Description }}{{ else }}{{ .context.Site.Params.description }}{{ end }}">
+<meta property="og:site_name" content="{{ .context.Site.Params.mydomain }}">
+Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with
+little. Understand your tools intimately. Assembly? What, like it's hard?
 <h2 id="introduction">Introduction</h2>
 <blockquote>
 <p>Low-level programming is good for the programmer&rsquo;s soul.

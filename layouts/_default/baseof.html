@@ -4,6 +4,7 @@
   dir="{{ or site.Language.LanguageDirection `ltr` }}"
 >
   <head>
+    {{ template "_internal/opengraph.html" . }}
     {{ partial "head.html" . }} {{ if .Param "math" }} {{ partialCached
     "math.html" . }} {{ end }}
   </head>
