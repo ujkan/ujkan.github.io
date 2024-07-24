@@ -43,7 +43,7 @@ blockquote cite {
 }
 
 p {
-  line-height: 1.4em;
+  line-height: 1.25em;
   text-align: justify;
   hyphens: auto;
 }
@@ -66,7 +66,7 @@ img {
 }
 
 .misc {
-  font-family: "Lato", sans-serif;
+  font-family: "Quando", serif;
   display: flex;
   gap: 1em;
   font-size: 0.8em;
@@ -79,7 +79,7 @@ header * a {
 }
 body {
   height: calc(100vh - 4rem);
-  font-family: "Source Serif 4", sans-serif;
+  font-family: "Source Serif 4", serif;
   font-weight: 400;
   color: var(--text-color);
   margin: 0;
@@ -101,6 +101,7 @@ nav {
 
 .nav-container {
   display: flex;
+  flex-direction: column;
   gap: 0.5em;
   justify-content: space-between;
   align-items: end;
@@ -138,25 +139,26 @@ pre {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: "Lato" !important;
+  font-family: "Quando";
 }
 
 header {
-  font-family: "Lato", sans-serif;
+  font-family: "Quando", serif;
   border-bottom: 2px solid var(--accent-color);
   align-items: center;
   display: flex;
   justify-content: space-between;
   color: var(--text-color);
-  padding: 1rem;
+  padding: 24px;
   text-align: center;
 }
 
 header h1 {
+  font-family: "Quando", serif;
   text-align: left;
-  flex: 2;
+  flex: 3;
   margin: 0;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 header nav ul {
@@ -233,9 +235,8 @@ nav td {
   padding-left: 25px;
 }
 
-body li {
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
+.center-source {
+  text-align: center;
 }
 
 @media (max-width: 768px) {

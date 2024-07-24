@@ -6,14 +6,14 @@
     <description>Recent content in Posts on Ujkan Sulejmani</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>6502 Assembly - Fibonacci</title>
+      <title>Fibonacci in 6502 Assembly</title>
       <link>http://localhost:1313/posts/6502-fibonacci/</link>
-      <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/6502-fibonacci/</guid>
-      <description>Introduction I&amp;rsquo;ve been learning some 6502 assembly (streams) and most recently I implemented a subroutine to calculate the n-th Fibonacci number.&#xA;What is 6502? The MOS Technology 6502 (typically pronounced &amp;ldquo;sixty-five-oh-two&amp;rdquo;) is an 8-bit microprocessor L&#xA;I implemented a subroutine that calculates the n-th Fibonacci number in 6502 assembly.&#xA;Here&amp;rsquo;s the code&#xA;define N_loc $01fd define fpp_loc $01fc define fp_loc $01fb fib: TXA PHA ; stores N in the stack, loc $01fd since $01fe ; and $01ff are ret.</description>
+      <description>&lt;p&gt;Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with&#xA;little. Understand your tools intimately. Assembly? What, like it&amp;rsquo;s hard?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Integers, Of Other Kinds</title>

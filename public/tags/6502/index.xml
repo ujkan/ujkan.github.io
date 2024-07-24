@@ -13,7 +13,7 @@
       <link>http://localhost:1313/posts/6502-fibonacci/</link>
       <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/6502-fibonacci/</guid>
-      <description>Introduction I&amp;rsquo;ve been learning some 6502 assembly (streams) and most recently I implemented a subroutine to calculate the n-th Fibonacci number.&#xA;What is 6502? The MOS Technology 6502 (typically pronounced &amp;ldquo;sixty-five-oh-two&amp;rdquo;) is an 8-bit microprocessor L&#xA;I implemented a subroutine that calculates the n-th Fibonacci number in 6502 assembly.&#xA;Here&amp;rsquo;s the code&#xA;define N_loc $01fd define fpp_loc $01fc define fp_loc $01fb fib: TXA PHA ; stores N in the stack, loc $01fd since $01fe ; and $01ff are ret.</description>
+      <description>Introduction I&amp;rsquo;ve been learning some 6502 assembly (see my livestreams) and most recently I implemented a subroutine to calculate the nth Fibonacci number.&#xA;What is 6502? The MOS Technology 6502 (typically pronounced &amp;ldquo;sixty-five-oh-two&amp;rdquo;) is an 8-bit microprocessor.&#xA;The 6502 is cool for many reasons. It&amp;rsquo;s especially attractive to those, like myself, who want to get close to bare metal without having to deal with complex modern architectures like x86/64 or ARM64.</description>
     </item>
   </channel>
 </rss>

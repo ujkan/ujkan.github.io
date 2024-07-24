@@ -23,7 +23,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <title>
-  6502 Assembly - Fibonacci | Ujkan Sulejmani
+  Fibonacci in 6502 Assembly | Ujkan Sulejmani
 </title>
 
     <link rel="stylesheet" href="/css/main.css">
@@ -56,61 +56,379 @@
 
 </header>
       <main>
-  <h1>6502 Assembly - Fibonacci</h1>
+  <h1>Fibonacci in 6502 Assembly</h1>
 
   
   
-  <time datetime="2024-07-15T00:00:00&#43;00:00">July 15, 2024</time>
+  <time datetime="2024-07-24T00:00:00&#43;00:00">July 24, 2024</time>
 
-  <h1 id="introduction">Introduction</h1>
-<p>I&rsquo;ve been learning some 6502 assembly
-(<a href="https://www.youtube.com/@ujkansulejmani/streams">streams</a>)
-and most recently I implemented a subroutine to calculate the n-th Fibonacci
-number.</p>
-<h1 id="what-is-6502">What is 6502?</h1>
+  <p>Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with
+little. Understand your tools intimately. Assembly? What, like it&rsquo;s hard?</p>
+<h2 id="introduction">Introduction</h2>
+<blockquote>
+<p>Low-level programming is good for the programmer&rsquo;s soul.
+<br><br>
+<cite>&ndash; John Carmack</cite></p>
+</blockquote>
+<p></p>
+<blockquote>
+<p>It&rsquo;s a long way to the <del>top</del> bottom if you wanna rock &rsquo;n&rsquo; roll.
+<br><br>
+<cite>&ndash; AC/DC</cite></p>
+</blockquote>
+<p>The assembly virus has infected me as a consequence of a year of web development
+weakening my immune system. I have succumbed<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>This post is a little foray into how subroutines work in 6502 assembly. Example
+of choice is a function that calculates the nth Fibonacci number. Hope you
+enjoy reading it as much as I did writing it.</p>
+<p><img src="apple-1-ad.jpeg" alt=""></p>
+<h2 id="what-is-6502">What is 6502?</h2>
 <blockquote>
 <p>The MOS Technology 6502 (typically pronounced &ldquo;sixty-five-oh-two&rdquo;)
-is an 8-bit microprocessor
-L</p>
+is an 8-bit microprocessor. <a href="#References">[1]</a></p>
 </blockquote>
-<p>I implemented a subroutine that calculates the n-th Fibonacci number in
-6502 assembly.</p>
-<p>Here&rsquo;s the code</p>
-<pre tabindex="0"><code class="language-assembly" data-lang="assembly">define N_loc $01fd
-define fpp_loc $01fc
-define fp_loc $01fb
-
-fib:
-  TXA
-  PHA             ; stores N in the stack, loc $01fd since $01fe
-                  ; and $01ff are ret. address
-  LDA #0          ; 1st fibonacci is 0
-  PHA
-  LDA #1          ; 2nd fibonacci is 1
-  PHA
-  LDX #2          ; loop counter; i = 2
-loop:
-  CPX N_loc       ; i == n?
-  BEQ fibdone     ; then quit, done
-
-  ; fp = fpp + fp
-  LDA fp_loc
-  ADC fpp_loc
-  STA fp_loc
-
-  ; fpp = fp - fpp
-  SEC             ; set carry for subtraction
-  LDA fp_loc
-  SBC fpp_loc
-  STA fpp_loc
-
-  INX             ; i++
-  JMP loop
-
-fibdone:
-  LDA fp_loc     ; result stored in accumulator
-  RTS
-</code></pre>
+<p>The 6502 is cool for many reasons. It&rsquo;s especially attractive to those, like
+myself, who want to get close to bare metal without having to deal with complex
+modern architectures like x86/64 or ARM64. The other huge benefit is that
+there is a large collection of wonderful resources to help you along this
+journey, among them:</p>
+<ul>
+<li><a href="https://skilldrick.github.io/easy6502/">Easy 6502</a> - a tutorial webpage with a
+built-in JavaScript emulator for 6502. It&rsquo;s what got me started with 6502;</li>
+<li>Ben Eater&rsquo;s fantastic YouTube
+<a href="https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH">series</a>
+(particularly cool is the <a href="https://youtu.be/HlLCtjJzHVI?feature=shared">WozMon
+video</a>);</li>
+<li><a href="http://www.visual6502.org/">Visual 6502</a> - a <strong>transistor-level</strong> simulator of
+the 6502.</li>
+</ul>
+<h2 id="fibonacci">Fibonacci</h2>
+<p>To calculate the nth Fibonacci number, I started with some high-level code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">fib</span>(<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">n</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">fprev</span> = <span style="color:#2aa198;font-weight:bold">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">fcurr</span> = <span style="color:#2aa198;font-weight:bold">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#859900">for</span> (<span style="color:#859900;font-weight:bold">int</span> <span style="color:#268bd2">i</span> = <span style="color:#2aa198;font-weight:bold">3</span>; <span style="color:#268bd2">i</span> &lt;= <span style="color:#268bd2">n</span>; <span style="color:#268bd2">i</span>++) {
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">fcurr</span> = <span style="color:#268bd2">fcurr</span> + <span style="color:#268bd2">fprev</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#268bd2">fprev</span> = <span style="color:#268bd2">fcurr</span> - <span style="color:#268bd2">fprev</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#859900">return</span> <span style="color:#268bd2">fcurr</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s ignore the edge cases first (like the fact that <code>fib(1)</code> incorrectly
+returns 1 instead of 0). Recall that the Fibonacci sequence is defined by the
+recurrence $F_n = F_{n-1} + F_{n-2}$. This means that, at any point, all we need
+to remember are two values: the previous and the current Fibonacci numbers at
+the current point in the sequence. Using those, we compute the next one via the
+recurrence above. Then, the next one is $F_{n+1} = F_n + F_{n-1}$. And so on.</p>
+<p>That&rsquo;s exactly what the body of the for-loop does. The line
+<code>fcurr = fcurr + fprev</code> is exactly the update rule as specified by the
+recurrence. The new &lsquo;previous&rsquo; Fibonacci number then takes on the value of the
+old &lsquo;current&rsquo; Fibonacci number ($\color{blue}{F_{n-1}}$ is <code>fprev</code> in $F_{n+1}
+= F_n + \color{blue}{F_{n-1}}$, but <code>fcurr</code> in $F_n = \color{blue}{F_{n-1}} +
+F_{n-2}$,). To achieve this, we can&rsquo;t just write <code>fprev = fcurr</code>, since <code>fcurr</code>
+has changed its value: <code>fcurr</code> is now
+<code>fcurr_original + fprev</code>. Therefore, we must set <code>fprev = fcurr - fprev == fcurr_original + fprev - fprev == fcurr_original</code>. (<code>fcurr_original</code> is not an
+actual variable in the code, but a label to refer to the value of <code>fcurr</code> at the
+start of the current loop iteration.)</p>
+<h2 id="our-setup">Our Setup</h2>
+<blockquote>
+<p>The 6502 is notoriously difficult to write a compiler for because it has only
+three general-purpose registers and it doesn’t have a stack-relative
+addressing mode, meaning there’s not really an efficient way to implement
+local variables.
+<br><br><p><p>
+<cite>&ndash; NobodyNada, Hacker News <a href="#References">[2]</a>:</cite></p>
+</blockquote>
+<p>Before we begin translating the C code to 6502 assembly, we need to get some
+fundamental things in order. First, we need to determine how we&rsquo;re going to
+supply the parameter <code>n</code> to the subroutine. In high-level programming, this is
+something we take for granted (because the compiler handles it for us). As we
+descend to the lower levels, in this case assembly, we need to specify this
+ourselves; it is not handled automatically for us. Architectures tend to have
+so-called <em>calling conventions</em>. These describe how the system should behave on
+subroutine calls as it pertains to the entire flow of events: argument supply,
+stack management, return addresses, etc. They help in particular compiler
+writers, who need to know how the machine will handle their subroutine call so
+that it does the right thing.</p>
+<p>The cool thing about writing assembly code is that you can decide how to handle
+a subroutine call whichever way you see fit. There are no restrictions beyond
+the behavior of the instructions. In our case, we have a very simple function
+signature: <code>int fib(int n)</code>. This lends itself to a straightforward approach:
+store the argument and (later) the result in the <code>A</code> register&mdash;the accumulator.
+This also matches the <a href="https://llvm-mos.org/wiki/C_calling_convention">calling
+convention</a> the smart folks
+behind <strong>llvm-mos</strong> came up with.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<p>Secondly, we need to also think about where we&rsquo;re going to store our local
+variables. Unfortunately, there aren&rsquo;t enough registers in 6502 to store<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> in
+them all the variables we need. For that reason, we&rsquo;re going to essentially
+replicate the classic idea of storing our local variables in the
+stack. We have three local variables:</p>
+<ul>
+<li><code>i</code> - the loop index</li>
+<li><code>fprev</code> - the &ldquo;previous&rdquo; Fibonacci number, $F_{i - 2}$ at the beginning of any
+loop iteration</li>
+<li><code>fcurr</code> - the &ldquo;current&rdquo; Fibonacci number, $F_{i - 1}$ at the beginning of any
+loop iteration</li>
+</ul>
+<p>We&rsquo;re of course not obligated to store <em>all</em> our local variables in the stack.
+In fact, the <code>Y</code> register is a so-called index register and is therefore
+commonly used to store counters and offsets<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>, making it the natural habitat
+for the loop index <code>i</code>. (Why <code>Y</code> instead of <code>X</code> will become clear later.) The
+remaining variables <code>fprev</code> and <code>fcurr</code> will be stored in the stack, in that
+order.</p>
+<p>Lastly, there&rsquo;s a subtle piece we need to complete the puzzle. Recall that we
+said the function parameter <code>n</code> is supplied to the subroutine in the register
+<code>A</code>. However, since 6502 only offers arithmetic operations for the <code>A</code> register,
+we&rsquo;ll need to use it for our calculations, hence we cannot store <code>n</code> in it
+over the course of the execution of the subroutine. We must therefore store it
+in memory, on the stack, just like the local variables <code>fprev</code> and <code>fcurr</code>.</p>
+<h2 id="the-6502-stack">The 6502 Stack</h2>
+<p>There are a few important details worth knowing about the 6502 stack
+<a href="#References">[3]</a><a href="#References">[4]</a>:</p>
+<ul>
+<li>it is 256 bytes large, with address range <code>$0100-$01ff</code>;</li>
+<li>there is an 8-bit stack pointer register <code>SP</code> for the lower byte of the address
+(the higher byte is always <code>$01</code>);</li>
+<li>there is no base pointer;</li>
+<li>there are only 2 read/write operations<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>: <code>PHA</code> (push acc to stack) and
+<code>PLA</code> (pop stack to acc);</li>
+<li>there is no stack-relative addressing;</li>
+<li>there are no instructions for manipulating the stack pointer <code>SP</code> directly.</li>
+</ul>
+<p>Moreover, the instructions <code>JSR</code> and <code>RTS</code> &ldquo;affect the stack as the return address
+is pushed onto or pulled from the stack, respectively.&rdquo; <a href="#References">[3]</a>. In fact, pushing
+the return address is the first thing that is done on a subroutine call,
+therefore the return address is going to be at the top of the stack frame after
+the call. <code>RTS</code> then pops this address from the stack and loads it into the
+<code>PC</code>. Crucially, for <code>RTS</code> to work correctly, the stack must only contain
+the return address when <code>RTS</code> is called (read: the stack pointer
+must point right below the location where the return address is stored). This
+is necessary because, as mentioned, there is no <strong>base</strong> pointer. The only
+information the chip has about the stack is the stack pointer.</p>
+<p>This constraint forces us to make one last decision. Since we established the
+convention that the result will be stored in the accumulator <code>A</code> on return,
+and the only way to pop elements from the stack is via <code>PLA</code>, which overwrites
+the accumulator, we cannot simply execute <code>PLA</code> consecutively to pop all our
+variables. One option is to reserve the stack byte right below the
+return address for the return <em>value</em>. Since this byte is the last to be popped
+to the accumulator via <code>PLA</code>, it will load the return value correctly. Another
+option is to handle the stack popping <em>manually</em>, which is the option we take.</p>
+<p>Recall that the only piece of information the 6502 chip has about the stack
+is the stack pointer. This means, the chip doesn&rsquo;t keep track of the number
+of pushes and pops to know what is happening to the stack; it only looks
+at <code>SP</code>. This means that, if we could find a way to adjust
+it manually, we wouldn&rsquo;t have to pop things into the accumulator
+at all to remove things from the stack. In fact, that&rsquo;s what the <code>PLA</code>
+instruction does behind the scenes anyway! It loads the value at the top of the
+stack into <code>A</code> and then increments <code>SP</code>. Luckily for us, there is an instruction
+that allows us to modify <code>SP</code>, namely <code>TXS</code> (<strong>T</strong>ransfer
+<strong><code>X</code></strong> to <strong><code>SP</code></strong>). (This is why we used <code>Y</code> for the loop index instead of
+<code>X</code>: there is no analogous instruction <code>TYS</code>.)</p>
+<p>We are finally ready to visualize the stack. Let&rsquo;s summarize the key points
+before we do so:</p>
+<ul>
+<li>we store <code>n</code>, <code>fprev</code>, and <code>fcurr</code> on the stack;</li>
+<li>we store <code>i</code>, the loop index, in register <code>Y</code>;</li>
+<li>there is no base pointer register, base in the stack diagram is for our
+reference only.</li>
+</ul>
+<p>Here is the stack after <code>fprev</code> and <code>fcurr</code> have been initialized.</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>+----------------+
+</span></span><span style="display:flex;"><span>|     Stack      |
+</span></span><span style="display:flex;"><span>+----------------+
+</span></span><span style="display:flex;"><span>| return address | &lt;- base      (e.g. $01FF) &lt;- SP+5
+</span></span><span style="display:flex;"><span>| n              | &lt;- base - $2 (e.g. $01FD) &lt;- SP+3
+</span></span><span style="display:flex;"><span>| fprev          | &lt;- base - $3 (e.g. $01FC) &lt;- SP+2
+</span></span><span style="display:flex;"><span>| fcurr          | &lt;- base - $4 (e.g. $01FB) &lt;- SP+1
+</span></span><span style="display:flex;"><span>| -----          | &lt;- base - $5 (e.g. $01FA) &lt;- SP
+</span></span><span style="display:flex;"><span>+----------------+
+</span></span></code></pre></div><p>Right away, we can define useful offsets for our stack variables. Since <code>SP</code>
+always points to the address below the last element, we have an offset of:</p>
+<ul>
+<li>+1 for <code>fcurr</code>;</li>
+<li>+2 for <code>fprev</code>;</li>
+<li>+3 for <code>n</code>;</li>
+<li>+5 for the return address (since it&rsquo;s 2 bytes long).</li>
+</ul>
+<p>However, since the stack pointer only stores the lower byte of the stack
+address, we must store the higher byte <code>$01</code> together with the offset, such that
+<code>SP + offset</code> yields the correct address. Therefore, the offsets become:</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">fcurr_offset</span> <span style="color:#268bd2">$0101</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">fprev_offset</span> <span style="color:#268bd2">$0102</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">N_offset</span>     <span style="color:#268bd2">$0103</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">retaddr_offs</span> <span style="color:#268bd2">$0105</span>
+</span></span></code></pre></div><h2 id="the-assembly-code">The Assembly Code</h2>
+<p>We can now begin writing the assembly program. First, let&rsquo;s handle the
+initialization of <code>fprev</code> and <code>fcurr</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#268bd2">fib:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">PHA</span>             <span style="color:#93a1a1;font-style:italic">; push n to stack
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDA</span> <span style="color:#93a1a1;font-style:italic">#0          ; fprev = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">PHA</span>             <span style="color:#93a1a1;font-style:italic">; push fprev to stack
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDA</span> <span style="color:#93a1a1;font-style:italic">#1          ; fcurr = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">PHA</span>             <span style="color:#93a1a1;font-style:italic">; push fcurr to stack
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">TSX</span>             <span style="color:#93a1a1;font-style:italic">; store stack ptr SP in X
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDY</span> <span style="color:#93a1a1;font-style:italic">#2          ; load initial loop index i = 2 in Y
+</span></span></span></code></pre></div><p>You might&rsquo;ve noticed that we set the initial loop index to <code>2</code> instead of <code>3</code> as in
+the C code. We&rsquo;re going to implement the equivalent for-loop <code>for(int i = 2; i &lt; n; i++)</code>, because it&rsquo;s easier to quit a loop on <code>i==n</code> in 6502 than on <code>i &gt; n</code>.</p>
+<p>Note that we&rsquo;ve also stored <code>SP</code> in <code>X</code> (after setting up the stack completely).
+This is needed because there is no stack-relative addressing in 6502, which
+means we can&rsquo;t access, say, <code>SP + offset</code> with an instruction like
+<code>LDA offset, SP</code>. However, there is <code>X</code>-relative addressing, so we can
+write <code>LDA offset, X</code> and the value at <code>X + offset</code> will be loaded in <code>A</code>.</p>
+<p>We can now continue with the loop body.</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#268bd2">loop:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; i == n?
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TYA</span>                     <span style="color:#93a1a1;font-style:italic">; transfer Y to A for comparison
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">CMP</span> <span style="color:#268bd2">N_offset</span>, <span style="color:#268bd2">X</span>         <span style="color:#93a1a1;font-style:italic">; if i == n?
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">BEQ</span> <span style="color:#268bd2">done</span>                <span style="color:#93a1a1;font-style:italic">; then done
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; else, continue with loop
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; fcurr = fprev + fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">LDA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>     <span style="color:#93a1a1;font-style:italic">; A = fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">ADC</span> <span style="color:#268bd2">fprev_offset</span>, <span style="color:#268bd2">X</span>     <span style="color:#93a1a1;font-style:italic">; A = A + fprev == fcurr + fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">STA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>     <span style="color:#93a1a1;font-style:italic">; fcurr = fcurr + prev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; fprev = fcurr - fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">SEC</span>                     <span style="color:#93a1a1;font-style:italic">; set carry for subtraction
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">LDA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>     <span style="color:#93a1a1;font-style:italic">; A = fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">SBC</span> <span style="color:#268bd2">fprev_offset</span>, <span style="color:#268bd2">X</span>     <span style="color:#93a1a1;font-style:italic">; A = A - fprev == fcurr - fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">STA</span> <span style="color:#268bd2">fprev_offset</span>, <span style="color:#268bd2">X</span>     <span style="color:#93a1a1;font-style:italic">; fprev = fcurr - fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">INY</span>                     <span style="color:#93a1a1;font-style:italic">; increment i (i++)
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">JMP</span> <span style="color:#268bd2">loop</span>                <span style="color:#93a1a1;font-style:italic">; go to loop start
+</span></span></span></code></pre></div><p>Finally, we can write the last block <code>done</code> (which corresponds to <code>return fcurr</code>). It is here we gain an appreciation for higher-level languages.
+Recall that we need to modify <code>SP</code> such that it points right below the return
+address, in order for <code>RTS</code> to jump to the return address. That address is
+exactly the address where <code>n</code> is stored, i.e. <code>SP + 3</code>. We can&rsquo;t modify <code>SP</code>
+directly, and we can&rsquo;t transfer it to any other register other than <code>X</code>. We
+also can&rsquo;t do arithmetic with <code>X</code>, only with <code>A</code>. So, our data must flow as
+follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>    TSX      TXA      ADC #3              TAX      TXS
+</span></span><span style="display:flex;"><span>SP -----&gt; X -----&gt; A --------&gt; A = A + 3 -----&gt; X -----&gt; SP
+</span></span></code></pre></div><p>With that taken care of, we only need to store the result in <code>A</code> before we
+return. Since <code>X</code> has changed in the sequence (being now equal to <code>SP_old + 3</code>),
+we can&rsquo;t simply write <code>LDA fcurr_offset, X</code>, since that would load the value at
+<code>SP_old + $3 + $0101 = SP_old + $0104</code>, i.e. the second byte of the return
+address. We need to somehow execute <code>LDA fcurr_offset, X - #$03</code>. One way to
+achieve this is to simply decrease <code>X</code> by 3 again, which can be done as
+follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>   SBC #3          TAX
+</span></span><span style="display:flex;"><span>A --------&gt; A - 3 -----&gt; X
+</span></span></code></pre></div><p>(Technically, we must set the carry bit before the subtraction, but that is
+a technical detail of the 6502 ISA that I will not go into.)</p>
+<p>We do not need to first transfer <code>X</code> to <code>A</code> because the previous sequence
+causes <code>A</code> and <code>X</code> to be equal.</p>
+<p>Lastly, we can write <code>LDA fcurr_offset, X</code> to load the result in <code>A</code> and
+<code>RTS</code> to return. All in all, the block looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#268bd2">done:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">TXA</span>                      <span style="color:#93a1a1;font-style:italic">; X -&gt; A
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">CLC</span>                      <span style="color:#93a1a1;font-style:italic">; clear the carry bit
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">ADC</span> <span style="color:#93a1a1;font-style:italic">#03                  ; A = A + 3
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TAX</span>                      <span style="color:#93a1a1;font-style:italic">; A -&gt; X
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TXS</span>                      <span style="color:#93a1a1;font-style:italic">; X -&gt; SP
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">SEC</span>                      <span style="color:#93a1a1;font-style:italic">; set the carry bit
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">SBC</span> <span style="color:#268bd2">$03</span>                  <span style="color:#93a1a1;font-style:italic">; A = A - 3
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TAX</span>                      <span style="color:#93a1a1;font-style:italic">; A -&gt; X
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; A = fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">RTS</span>                      <span style="color:#93a1a1;font-style:italic">; return
+</span></span></span></code></pre></div><p>Piecing the different blocks together, we get:</p>
+<div class="highlight"><pre tabindex="0" style="color:#586e75;background-color:#eee8d5;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">fcurr_offset</span> <span style="color:#268bd2">$0101</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">fprev_offset</span> <span style="color:#268bd2">$0102</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">N_offset</span>     <span style="color:#268bd2">$0103</span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">define</span> <span style="color:#268bd2">retaddr_offs</span> <span style="color:#268bd2">$0105</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">fib:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">PHA</span>                      <span style="color:#93a1a1;font-style:italic">; push n to stack
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDA</span> <span style="color:#93a1a1;font-style:italic">#0                   ; fprev = 0
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">PHA</span>                      <span style="color:#93a1a1;font-style:italic">; push fprev to stack
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDA</span> <span style="color:#93a1a1;font-style:italic">#1                   ; fcurr = 1
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">PHA</span>                      <span style="color:#93a1a1;font-style:italic">; push fcurr to stack
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">TSX</span>                      <span style="color:#93a1a1;font-style:italic">; store stack ptr SP in X
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDY</span> <span style="color:#93a1a1;font-style:italic">#2                   ; load init loop index i = 2 in Y
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">loop:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; i == n?
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TYA</span>                      <span style="color:#93a1a1;font-style:italic">; transfer Y to A for comparison
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">CMP</span> <span style="color:#268bd2">N_offset</span>, <span style="color:#268bd2">X</span>          <span style="color:#93a1a1;font-style:italic">; if i == n?
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">BEQ</span> <span style="color:#268bd2">done</span>                 <span style="color:#93a1a1;font-style:italic">; then done
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; else, continue with loop
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; fcurr = fprev + fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">LDA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; A = fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">ADC</span> <span style="color:#268bd2">fprev_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; A = A + fprev == fcurr + fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">STA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; fcurr = fcurr + prev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#93a1a1;font-style:italic">; fprev = fcurr - fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">SEC</span>                      <span style="color:#93a1a1;font-style:italic">; set carry for subtraction
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">LDA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; A = fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">SBC</span> <span style="color:#268bd2">fprev_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; A = A - fprev == fcurr - fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">STA</span> <span style="color:#268bd2">fprev_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; fprev = fcurr - fprev
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">INY</span>                      <span style="color:#93a1a1;font-style:italic">; increment i (i++)
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">JMP</span> <span style="color:#268bd2">loop</span>                 <span style="color:#93a1a1;font-style:italic">; go to loop start
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#268bd2">done:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">TXA</span>                      <span style="color:#93a1a1;font-style:italic">; X -&gt; A
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">CLC</span>                      <span style="color:#93a1a1;font-style:italic">; clear the carry bit
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">ADC</span> <span style="color:#93a1a1;font-style:italic">#03                  ; A = A + 3
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TAX</span>                      <span style="color:#93a1a1;font-style:italic">; A -&gt; X
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TXS</span>                      <span style="color:#93a1a1;font-style:italic">; X -&gt; SP
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">SEC</span>                      <span style="color:#93a1a1;font-style:italic">; set the carry bit
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">SBC</span> <span style="color:#268bd2">$03</span>                  <span style="color:#93a1a1;font-style:italic">; A = A - 3
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">TAX</span>                      <span style="color:#93a1a1;font-style:italic">; A -&gt; X
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#268bd2">LDA</span> <span style="color:#268bd2">fcurr_offset</span>, <span style="color:#268bd2">X</span>      <span style="color:#93a1a1;font-style:italic">; A = fcurr
+</span></span></span><span style="display:flex;"><span><span style="color:#93a1a1;font-style:italic"></span>  <span style="color:#268bd2">RTS</span>                      <span style="color:#93a1a1;font-style:italic">; return
+</span></span></span></code></pre></div><h2 id="a-namereferencesareferences"><a name=References></a>References</h2>
+<p>[1] Wikipedia contributors. (2024, July 19). MOS Technology 6502. In Wikipedia,
+The Free Encyclopedia. Retrieved 20:53, July 23, 2024, from
+<a href="https://en.wikipedia.org/w/index.php?title=MOS_Technology_6502&amp;oldid=1235478584">https://en.wikipedia.org/w/index.php?title=MOS_Technology_6502&amp;oldid=1235478584</a></p>
+<p>[2] <a href="https://news.ycombinator.com/item?id=27327636">https://news.ycombinator.com/item?id=27327636</a></p>
+<p>[3] <a href="https://www.masswerk.at/6502/6502_instruction_set.html">https://www.masswerk.at/6502/6502_instruction_set.html</a></p>
+<p>[4] <a href="http://www.6502.org/tutorials/6502opcodes.html">http://www.6502.org/tutorials/6502opcodes.html</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>It turns out that I&rsquo;d have likely been way more interested in my CompArch
+classes if they hadn&rsquo;t used the Orkish x86/64. Sad!&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Caveat: <code>llvm-mos</code> treats <code>int</code>s as 16-bit, whereas we set them to be 8
+bits long. This explains why the table in the <code>llvm-mos</code> wiki uses both
+the <code>A</code> and <code>X</code> registers for the function argument <code>int a</code>.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Technically, we can <em>store</em> the three local variables in the three 6502
+registers <code>A</code>, <code>X</code> and <code>Y</code>, but we can&rsquo;t also operate on them at the same
+time, since 6502 only offers arithmetic operations for the <code>A</code> register.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>Having such a special-purpose register is possible because a counter is a
+universal programming concept and behaves in a uniform way. For example:
+counters are typically <em>incremented</em> or <em>decremented</em>. An ISA can then
+offer special instructions that execute those operations, like 6502 does
+with <code>INY</code> (<strong>IN</strong>crement <strong>Y</strong>) and <code>DEY</code> (<strong>DE</strong>crement <strong>Y</strong>).&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Technically, there are also read/write operations for the status register.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
   
   <div>
     <div>Tags:</div>
