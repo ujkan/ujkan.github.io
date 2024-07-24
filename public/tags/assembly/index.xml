@@ -13,7 +13,7 @@
       <link>http://localhost:1313/posts/6502-fibonacci/</link>
       <pubDate>Wed, 24 Jul 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/6502-fibonacci/</guid>
-      <description>&lt;meta property=&#34;og:title&#34; content=&#34;{{ if .context.IsHome }}{{ .context.Site.Params.mydomain }}{{ else }}{{ .context.Title }} &amp;middot; {{ .context.Site.Params.mydomain }}{{ end }}&#34;&gt;&#xA;&lt;meta property=&#34;og:type&#34; content=&#34;{{ if .context.IsPage }}article{{ else }}website{{ end }}&#34;&gt;&#xA;&lt;meta property=&#34;og:description&#34; content=&#34;{{ if .context.Description }}{{ .context.Description }}{{ else }}{{ .context.Site.Params.description }}{{ end }}&#34;&gt;&#xA;&lt;meta property=&#34;og:site_name&#34; content=&#34;{{ .context.Site.Params.mydomain }}&#34;&gt;&#xA;Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with&#xA;little. Understand your tools intimately. Assembly? What, like it&#39;s hard?</description>
+      <description>&lt;p&gt;Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with&#xA;little. Understand your tools intimately. Assembly? What, like it&amp;rsquo;s hard?&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
