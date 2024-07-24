@@ -1,6 +1,7 @@
 ---
 title: 'Fibonacci in 6502 Assembly'
-excerpt: New possibilities from old concepts
+linkTitle: 'Fibonacci in 6502 Assembly'
+excerpt: Digging deep down
 date: 2024-07-24
 permalink: /posts/2024/07/6502-fibonacci
 tags:
