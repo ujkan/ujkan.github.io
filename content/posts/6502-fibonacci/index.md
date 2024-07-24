@@ -8,10 +8,6 @@ tags:
   - 6502
   - assembly
 ---
-<meta property="og:title" content="{{ if .context.IsHome }}{{ .context.Site.Params.mydomain }}{{ else }}{{ .context.Title }} &middot; {{ .context.Site.Params.mydomain }}{{ end }}">
-<meta property="og:type" content="{{ if .context.IsPage }}article{{ else }}website{{ end }}">
-<meta property="og:description" content="{{ if .context.Description }}{{ .context.Description }}{{ else }}{{ .context.Site.Params.description }}{{ end }}">
-<meta property="og:site_name" content="{{ .context.Site.Params.mydomain }}">
 Have to dig to find gold. The benefits of speaking Parseltongue. Doing much with
 little. Understand your tools intimately. Assembly? What, like it's hard?
 <!--more-->
