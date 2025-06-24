@@ -1,10 +1,10 @@
 +++
 title = 'About me'
-date = 2024-05-17T08:30:00-07:00
+date = 2025-06-24T08:30:00-07:00
 draft = false
 +++
-Currently, I'm a full stack + operations developer (a *DevOps Engineer*, if you like) working in [CGI](https://www.cgi.com/de/de)'s Munich
- office.
+Currently, I'm a *Software Engineer* working at [Celonis](https://www.celonis.com)
+in Munich.
 
 My driving forces:
 - become an expert in (complex) systems-thinking
@@ -31,12 +31,5 @@ Will I succeed? No. Is it worth trying? Yes.
 Right now, I'm actively interested in:
 - automation with quick&dirty scripts (even when it costs more time)
 - [writing](/posts)
-- information architecture patterns (in the style of Christoph Alexander's
-*A Pattern Language*) as tools for organizing and improving thinking and
-cognition
-- software development principles that go beyond the
-dogmatic popular philosophies (such as *Clean Code*)
-  - see [The Grug Brained Developer](https://grugbrain.dev/),
-[Core Design Principles for Software Developers by Venkat Subramaniam](https://www.youtube.com/watch?v=llGgO74uXMI),
-[A Philosophy of Software Design by John Ousterhout](https://www.amazon.com/Philosophy-Software-Design-John-Ousterhout/dp/1732102201)
-- finding the Goldilocks zone of abstraction in programming
+- creating better development experiences
+- radically new ways of doing computer-based work, e.g. [Dynamicland](https://dynamicland.org/)
