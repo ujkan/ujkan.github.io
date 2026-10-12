@@ -107,6 +107,11 @@ nav {
   align-items: end;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 pre {
   background: #f4f4f4;
   border: 1px solid #ddd;
