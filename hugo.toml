@@ -49,3 +49,5 @@ weight = 30
 [params]
   math = true
 
+[params.analytics]
+  cloudflareToken = ""

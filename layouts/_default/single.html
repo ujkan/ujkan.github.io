@@ -5,6 +5,15 @@
   {{ $dateHuman := .Date | time.Format ":date_long" }}
   <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
 
-  {{ .Content }}
+  {{ if strings.Contains .RawContent "<!--more-->" }}
+    {{ $summary := printf "%s" .Summary }}
+    {{ $content := printf "%s" .Content }}
+    <div class="chapter-intro">
+      {{ $summary | safeHTML }}
+    </div>
+    {{ strings.Replace $content $summary "" 1 | safeHTML }}
+  {{ else }}
+    {{ .Content }}
+  {{ end }}
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 {{ end }}

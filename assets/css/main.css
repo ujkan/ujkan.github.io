@@ -34,7 +34,8 @@ blockquote {
   quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote p {
-  display: inline;
+  /* Keep the source line breaks inside quoted prompts. */
+  white-space: pre-line;
 }
 
 blockquote cite {
@@ -296,4 +297,35 @@ nav td {
     background-blend-mode: lighten;
     background-color: var(--light-mode-bg-clr-lightener);
   }
+}
+
+
+/* Slightly wider than the text column, but still inside the main content area. */
+figure.diagram-wide {
+  width: calc(100% + 2rem);
+  max-width: none;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+figure.diagram-wide img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* Text before <!--more--> renders as a chapter-style intro. */
+.chapter-intro {
+  font-style: italic;
+  font-size: 1em;
+  line-height: 1.4;
+  margin: 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent-color);
+  opacity: 0.8;
+}
+
+.chapter-intro p {
+  text-align: left;
+  hyphens: none;
 }
