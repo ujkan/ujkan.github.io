@@ -1,5 +1,6 @@
 baseURL = 'https://ujkan.github.io'
 languageCode = 'en-us'
+timeZone = 'Europe/Berlin'
 title = 'Ujkan Sulejmani'
 
 [[menus.main]]
