@@ -65,7 +65,7 @@ in Sipser [[1]](#References).)
 The other difficulty, of course, is having ideas in the first place![^2] And so
 I decided that, having a few ideas but not the time to try them all out, I could
 still experience much of the intended learning effect by using an LLM as an
-oracle. LLMaaO. (Laughing Lovingly My Anthropic Ass Off.)
+oracle.
 
 
 Naturally, some of that learning would be lost. Wrong turns teach you things
