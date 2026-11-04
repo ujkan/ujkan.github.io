@@ -13,13 +13,13 @@ little. Understand your tools intimately. Assembly? What, like it's hard?
 <!--more-->
 ## Introduction
 > Low-level programming is good for the programmer's soul.
-> <br><br>
+> <br>
 > <cite>-- John Carmack</cite>
 
 <p></p>
 
 > It's a long way to the ~~top~~ bottom if you wanna rock 'n' roll.
-> <br><br>
+> <br>
 > <cite>-- AC/DC</cite>
 
 The assembly virus has infected me as a consequence of a year of web development
@@ -88,7 +88,7 @@ start of the current loop iteration.)
 > three general-purpose registers and it doesn’t have a stack-relative
 > addressing mode, meaning there’s not really an efficient way to implement
 > local variables.
-> <br><br><p><p>
+> <br>
 > <cite>-- NobodyNada, Hacker News [[2]](#References):</cite>
 
 Before we begin translating the C code to 6502 assembly, we need to get some
