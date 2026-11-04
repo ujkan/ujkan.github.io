@@ -52,14 +52,14 @@ approaches, where only a few paths lead to the solution, it's very easy to go
 down a dead end: there are many more dead ends than correct paths. Moreover,
 it's not just the size of the search space that makes a problem hard (and
 interesting) in the first place, but the difficulty of being able to tell which
-path is feasible,
+path is feasible.
 
 {{< figure class="diagram-wide" src="many_paths.svg" alt="Search space with one viable path" >}}
 
 Thus, having access to an _oracle_, an entity that can answer with a simple yes
 or no to the question of the feasibility of a direction, would drastically
 reduce the time needed to find the right solution. (The term _oracle_ was
-borrowed from complexity theory complexity theory; see for example Section 9.2
+borrowed from complexity theory; see for example Section 9.2
 in Sipser [[1]](#References).)
 
 The other difficulty, of course, is having ideas in the first place![^2] And so
@@ -72,10 +72,12 @@ Naturally, some of that learning would be lost. Wrong turns teach you things
 too: what not to do, what something is not, when to quit, how to start anew
 without letting the failed attempt linger in your head. (_Unlearning_ is hard.)
 
+I accepted this trade-off.
+
 {{< figure class="diagram-wide" src="path_back_learning_and_forgetting.svg" alt="Path back from a dead end showing learning and forgetting" >}}
 
 Reducing the exploration time was one dimension; translating the ideas into code
-was also a bit hairy and not nicely abstracted. So I decided to let LLMs help
+was also a bit hairy as generating the assembly was not nicely abstracted in the code, but was rather just raw string generation. All useful abstractions needed to be built. So I decided to let LLMs help
 me out there too. I was now operating almost entirely at the level of ideas.
 
 I decided to trust myself to use the LLM in this restricted way, still not
@@ -88,7 +90,7 @@ For example, at some point I realized that the next big improvement would likely
 be automating the packing of instructions into bundles. Up to that point, I had
 done that manually within one loop iteration and gotten quite close to the
 limit. So, although I had a strong suspicion that this would be quite
-productive, I had the oracle confirm that for me. 
+productive, I had the oracle confirm that for me.
 
 Once confirmed, I was able to use the LLM as a Socratic dialogue partner to
 flesh it out, again without becoming overly reliant. At this point it would've
@@ -112,7 +114,7 @@ quite helpful. I started off by saying:
 > what do you think? discuss
 
 The LLM was eager to give me way too much hand-holding here, so I had to
-prompt it to 
+prompt it to
 
 > be socratic with me and don't reveal the answer immediately
 
