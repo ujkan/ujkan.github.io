@@ -4,6 +4,8 @@ linkTitle: 'LLMaaO (LLM as an Oracle)'
 excerpt: The case for asking an LLM "yes or no" instead of "how".
 date: 2026-11-04
 permalink: /posts/2026/11/llm-as-an-oracle
+images:
+  - /images/consulting-the-oracle.jpg
 tags:
   - learning
   - llm
@@ -88,8 +90,8 @@ I got down to 2,000 cycles and still felt like I'd learned a lot.
 
 For example, at some point I realized that the next big improvement would likely
 be automating the packing of instructions into bundles. Up to that point, I had
-done that manually within one loop iteration and gotten quite close to the
-limit. So, although I had a strong suspicion that this would be quite
+done that locally within one loop iteration and gotten quite close to the
+limit. So, although I had a strong suspicion that doing this globally would be quite
 productive, I had the oracle confirm that for me.
 
 Once confirmed, I was able to use the LLM as a Socratic dialogue partner to
