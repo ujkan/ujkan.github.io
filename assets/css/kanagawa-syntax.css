@@ -1,0 +1,47 @@
+/* Chroma token colors from kanagawa.nvim: lotus (light) and dragon (dark). */
+:root {
+  --syn-comment: #6d6b60;
+  --syn-keyword: #5c309e;
+  --syn-function: #1c4ea8;
+  --syn-type: #34776a;
+  --syn-string: #48761a;
+  --syn-number: #c41a5a;
+  --syn-constant: #a85500;
+  --syn-operator: #8a621a;
+  --syn-name: #766c13;
+  --syn-error: #c81029;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --syn-comment: #737c73;
+    --syn-keyword: #8992a7;
+    --syn-function: #8ba4b0;
+    --syn-type: #8ea4a2;
+    --syn-string: #8a9a7b;
+    --syn-number: #a292a3;
+    --syn-constant: #b6927b;
+    --syn-operator: #c4746e;
+    --syn-name: #c4b28a;
+    --syn-error: #e46876;
+  }
+}
+
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr { color: var(--syn-keyword); }
+.chroma .kt, .chroma .nc, .chroma .nn, .chroma .ne { color: var(--syn-type); }
+.chroma .nf, .chroma .fm, .chroma .nd { color: var(--syn-function); }
+.chroma .nb, .chroma .bp, .chroma .no, .chroma .nv, .chroma .vc, .chroma .vg, .chroma .vi { color: var(--syn-constant); }
+.chroma .na, .chroma .nt, .chroma .nl { color: var(--syn-name); }
+.chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd,
+.chroma .s2, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr,
+.chroma .s1, .chroma .ss { color: var(--syn-string); }
+.chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color: var(--syn-number); }
+.chroma .o, .chroma .ow { color: var(--syn-operator); }
+.chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs { color: var(--syn-comment); font-style: italic; }
+.chroma .cp, .chroma .cpf { color: var(--syn-constant); }
+.chroma .err, .chroma .gd { color: var(--syn-error); }
+.chroma .gi { color: var(--syn-string); }
+.chroma .ge { font-style: italic; }
+.chroma .gs { font-weight: bold; }
+.chroma .lnt, .chroma .ln { color: var(--syn-comment); }
+.chroma .hl { background-color: var(--bg-clr-lightener); }

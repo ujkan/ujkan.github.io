@@ -4,8 +4,6 @@
   --secondary-color: var(--accent-color);
   --main-color: var(--accent-color);
 
-  --dark-mode-bg-clr: #0a0c1c;
-
   --bg-clr: var(--light-mode-bg-clr);
   --bg-clr-darkener: rgba(10, 12, 28, 0.5);
   --background-accent: #307360;
@@ -13,22 +11,51 @@
   --accent-color: var(--light-mode-accent);
   --text-color: var(--light-mode-text-color);
 
-  --dark-mode-bg-clr: #0a0c1c;
-  --dark-mode-bg-clr-darkener: rgba(10, 12, 28, 0.5);
-  --dark-mode-background-accent: #307360;
-  --dark-mode-link-accent: #3fad8e;
-  --dark-mode-accent-color: #307360;
+  --dark-mode-bg-clr: #1a1a1a;
+  --dark-mode-bg-clr-darkener: rgba(26, 26, 26, 0.5);
+  --dark-mode-background-accent: #2a2a2a;
+  --dark-mode-link-accent: #e0a96d;
+  --dark-mode-accent-color: #e0a96d;
+  --dark-mode-text-color: #e0e0e0;
+  --dark-mode-border-color: #333;
 
   --light-mode-accent: #548ca0;
   --light-mode-bg-clr: #f5f3e4;
   --light-mode-text-color: black;
   --light-mode-link-accent: var(--light-mode-accent);
   --light-mode-bg-clr-lightener: rgba(245, 243, 228, 0.5);
+  --dark-mode-bg-clr-lightener: rgba(26, 26, 26, 0.5);
+
+  --bg-clr-lightener: var(--light-mode-bg-clr-lightener);
+  --blockquote-bg: var(--light-mode-bg-clr-lightener);
+  --pre-bg: #f1edd8;
+  --pre-border: #e0d9b4;
+  --pre-text: #545464;
+  --footer-text: white;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-clr: var(--dark-mode-bg-clr);
+    --bg-clr-darkener: var(--dark-mode-bg-clr-darkener);
+    --background-accent: var(--dark-mode-background-accent);
+    --link-accent: var(--dark-mode-link-accent);
+    --accent-color: var(--dark-mode-accent-color);
+    --text-color: var(--dark-mode-text-color);
+    --border-color: var(--dark-mode-border-color);
+    --bg-clr-lightener: var(--dark-mode-bg-clr-lightener);
+    --blockquote-bg: rgba(255, 255, 255, 0.05);
+    --pre-bg: #282727;
+    --pre-border: #393836;
+    --pre-text: #c5c9c5;
+    --footer-text: #181616;
+  }
 }
 blockquote {
-  background: #f8f6ed;
+  background: var(--blockquote-bg);
   font-style: italic;
-  border-left: 10px solid var(--light-mode-accent);
+  border-left: 10px solid var(--accent-color);
   margin: 0px;
   padding: 0.5em 10px;
   quotes: "\201C""\201D""\2018""\2019";
@@ -85,9 +112,24 @@ body {
   color: var(--text-color);
   margin: 0;
   padding: 0;
+  background-color: var(--bg-clr);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background-image: url('/pattern.png');
   background-repeat: repeat;
   background-size: 220px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  body::before {
+    filter: invert(1);
+  }
 }
 
 body h1 {
@@ -114,14 +156,20 @@ html {
 }
 
 pre {
-  background: #f4f4f4;
-  border: 1px solid #ddd;
+  background: var(--pre-bg);
+  border: 1px solid var(--pre-border);
   border-left: 3px solid var(--accent-color);
-  color: #666;
+  color: var(--pre-text);
   page-break-inside: avoid;
-  font-family: monospace;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
   font-size: 15px;
   line-height: 1.6;
+  text-align: left;
+  hyphens: none;
+  font-variant-ligatures: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  tab-size: 2;
   margin-bottom: 1.6em;
   max-width: 100%;
   overflow: auto;
@@ -213,7 +261,7 @@ main {
 
 footer {
   background-color: var(--main-color);
-  color: white;
+  color: var(--footer-text);
   padding: 1rem;
   text-align: center;
 }
@@ -229,7 +277,7 @@ footer ul li {
 }
 
 footer ul li a {
-  color: white;
+  color: var(--footer-text);
   text-decoration: none;
 }
 
@@ -291,11 +339,26 @@ nav td {
   }
 
   header {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-clr-lightener);
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background-image: url('/pattern.png');
     background-repeat: repeat;
     background-size: 220px;
     background-blend-mode: lighten;
-    background-color: var(--light-mode-bg-clr-lightener);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  header > * {
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -328,4 +391,56 @@ figure.diagram-wide img {
 .chapter-intro p {
   text-align: left;
   hyphens: none;
+}
+
+/* Prevent footnote superscripts from increasing line height. */
+sup {
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.5em;
+}
+
+/* Dark mode: invert header pattern and improve LaTeX color contrast. */
+@media (prefers-color-scheme: dark) {
+  header::before {
+    filter: invert(1);
+  }
+
+  .MathJax [style*="color: red"],
+  .MathJax [style*="color:red"],
+  .MathJax [style*="color: #ff0000"],
+  .MathJax [style*="color:#ff0000"],
+  .MathJax_CHTML [style*="color: red"],
+  .MathJax_CHTML [style*="color:red"],
+  .MathJax_CHTML [style*="color: #ff0000"],
+  .MathJax_CHTML [style*="color:#ff0000"],
+  mjx-container [style*="color: red"],
+  mjx-container [style*="color:red"],
+  mjx-container [style*="color: #ff0000"],
+  mjx-container [style*="color:#ff0000"] {
+    color: #ff8a80 !important;
+  }
+
+  .MathJax [style*="color: blue"],
+  .MathJax [style*="color:blue"],
+  .MathJax [style*="color: #0000ff"],
+  .MathJax [style*="color:#0000ff"],
+  .MathJax [style*="color: #268bd2"],
+  .MathJax [style*="color:#268bd2"],
+  .MathJax_CHTML [style*="color: blue"],
+  .MathJax_CHTML [style*="color:blue"],
+  .MathJax_CHTML [style*="color: #0000ff"],
+  .MathJax_CHTML [style*="color:#0000ff"],
+  .MathJax_CHTML [style*="color: #268bd2"],
+  .MathJax_CHTML [style*="color:#268bd2"],
+  mjx-container [style*="color: blue"],
+  mjx-container [style*="color:blue"],
+  mjx-container [style*="color: #0000ff"],
+  mjx-container [style*="color:#0000ff"],
+  mjx-container [style*="color: #268bd2"],
+  mjx-container [style*="color:#268bd2"] {
+    color: #82b1ff !important;
+  }
 }
