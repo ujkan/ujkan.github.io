@@ -56,7 +56,7 @@ it's not just the size of the search space that makes a problem hard (and
 interesting) in the first place, but the difficulty of being able to tell which
 path is feasible.
 
-{{< figure class="diagram-wide" src="many_paths.svg" alt="Search space with one viable path" >}}
+{{< figure class="diagram-wide" src="many_paths_v2.svg" alt="Search space with one viable path" >}}
 
 Thus, having access to an _oracle_, an entity that can answer with a simple yes
 or no to the question of the feasibility of a direction, would drastically
@@ -76,7 +76,7 @@ without letting the failed attempt linger in your head. (_Unlearning_ is hard.)
 
 I accepted this trade-off.
 
-{{< figure class="diagram-wide" src="path_back_learning_and_forgetting.svg" alt="Path back from a dead end showing learning and forgetting" >}}
+{{< figure class="diagram-wide" src="path_back_learning_and_forgetting_v2.svg" alt="Path back from a dead end showing learning and forgetting" >}}
 
 Reducing the exploration time was one dimension; translating the ideas into code
 was also a bit hairy as generating the assembly was not nicely abstracted in the code, but was rather just raw string generation. All useful abstractions needed to be built. So I decided to let LLMs help
